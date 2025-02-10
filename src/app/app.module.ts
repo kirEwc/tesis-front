@@ -24,7 +24,6 @@ import { ToastrModule } from 'ngx-toastr';
 
 // Se importa el componente de chatbot
 import { GlobalChatModalComponent } from "./global-chat-modal/global-chat-modal.component";
-import { TestChatComponent } from "./test-chat/test-chat.component";
 
 registerLocaleData(en);
 
@@ -54,7 +53,6 @@ registerLocaleData(en);
         newestOnTop: false,
     }),
     GlobalChatModalComponent,
-    TestChatComponent
 ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
