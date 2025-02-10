@@ -17,11 +17,12 @@ export class GlobalChatModalComponent {
   isOpen = false;
   activeTab = 'inicio';
 
+
   toggleChat() {
     this.isOpen = !this.isOpen;
   }
 
-  switchTab(tabId: string) {
+ public switchTab(tabId: string) {
     this.activeTab = tabId;
   }
 

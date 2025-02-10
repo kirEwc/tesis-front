@@ -2,17 +2,15 @@
   position: fixed;
   bottom: 30px;
   right: 10px;
-  background-color: #2563eb;
+  background: linear-gradient(to top, #7e7d36, #a36b02);
   color: white;
-  padding: 10px 20px;
-  border-radius: 9999px;
+  padding: 10px 10px;
+  border-radius: 50%;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s;
   z-index: 40;
 
-  &:hover {
-    background-color: #1d4ed8;
-  }
+  
 }
 
 .chat-modal {
@@ -45,6 +43,10 @@
 
   a {
     color: #bdc3c7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     text-decoration: none;
     font-size: 14px;
     text-align: center;
@@ -58,12 +60,8 @@
       color: white;
     }
 
-    .nav-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: currentColor;
-      margin: 0 auto 4px;
+    .icono {
+     width: 25px; 
     }
   }
 }

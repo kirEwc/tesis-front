@@ -28,19 +28,19 @@
 
     <div class="nav-bar">
       <a href="#" [class.active]="activeTab === 'inicio'" (click)="switchTab('inicio')">
-        <div class="nav-dot"></div>
+        <img src="/assets/chat-icons/home.svg" alt="Inicio" class="icono" />
         Inicio
       </a>
       <a href="#" [class.active]="activeTab === 'mensajes'" (click)="switchTab('mensajes')">
-        <div class="nav-dot"></div>
+        <img src="/assets/chat-icons/message.svg" alt="Mensajes"  class="icono"/>
         Mensajes
       </a>
       <a href="#" [class.active]="activeTab === 'tareas'" (click)="switchTab('tareas')">
-        <div class="nav-dot"></div>
+        <img src="/assets/chat-icons/task.svg" alt="Tareas"  class="icono"/>
         Tareas
       </a>
       <a href="#" [class.active]="activeTab === 'ayuda'" (click)="switchTab('ayuda')">
-        <div class="nav-dot"></div>
+        <img src="/assets/chat-icons/help.svg" alt="Ayuda"  class="icono"/>
         Ayuda
       </a>
     </div>

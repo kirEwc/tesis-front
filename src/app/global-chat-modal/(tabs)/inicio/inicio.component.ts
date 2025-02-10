@@ -1,4 +1,5 @@
-import { Component,Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { GlobalChatModalComponent } from '../../global-chat-modal.component';
 
 @Component({
   selector: 'app-inicio',
@@ -9,10 +10,16 @@ import { Component,Output, EventEmitter } from '@angular/core';
 })
 export class InicioComponent {
 
-  @Output() close = new EventEmitter<void>()
+  constructor(private Instancia: GlobalChatModalComponent,) { }
+  
 
   onClose() {
-    this.close.emit()
+    this.Instancia.toggleChat() ;
   }
+
+  IrAMensaje(tab: string) {
+    this.Instancia.switchTab(tab);
+  }
+  
 
 }
