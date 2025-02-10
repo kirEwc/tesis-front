@@ -1,0 +1,38 @@
+.tab-content {
+    color: white;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #374151;
+  
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  
+    .close-button {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 24px;
+      cursor: pointer;
+  
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  
+  .content {
+    padding: 16px;
+  
+    p {
+      color: #d1d5db;
+    }
+  }
+  
+  

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,10 +22,17 @@ import { OrganizationModule } from './modules/organization/organization.module';
 import { ChatbotModule } from './modules/chatbot/chatbot.module';
 import { ToastrModule } from 'ngx-toastr';
 
+// Se importa el componente de chatbot
+import { GlobalChatModalComponent } from "./global-chat-modal/global-chat-modal.component";
+import { TestChatComponent } from "./test-chat/test-chat.component";
+
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    
+  ],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
@@ -39,15 +47,19 @@ registerLocaleData(en);
     OrganizationModule,
     ChatbotModule,
     ReactiveFormsModule,
+    CommonModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right',
-      newestOnTop: false,
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right',
+        newestOnTop: false,
     }),
-  ],
+    GlobalChatModalComponent,
+    TestChatComponent
+],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     provideHttpClient(withInterceptorsFromDi()),
   ],
+  // exports: [GlobalChatComponent],
 })
 export class AppModule {}

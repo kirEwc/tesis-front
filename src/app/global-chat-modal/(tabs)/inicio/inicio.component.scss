@@ -1,0 +1,86 @@
+.tab-content {
+    color: white;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #374151;
+  
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  
+    .close-button {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 24px;
+      cursor: pointer;
+  
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  
+  .content {
+    padding: 16px;
+    max-height: 400px;
+    overflow-y: auto;
+  
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  
+    p {
+      color: #d1d5db;
+      margin-bottom: 16px;
+    }
+  
+    .action-button {
+      margin-top: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      button {
+        background-color: #3b82f6;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 9999px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: #2563eb;
+        }
+      }
+    }
+  
+    .recent-messages {
+      .message {
+        background-color: #1f2937;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+  
+        .message-title {
+          font-weight: 600;
+        }
+  
+        .message-details {
+          font-size: 14px;
+          color: #9ca3af;
+        }
+      }
+    }
+  }
+  
+  

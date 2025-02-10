@@ -1,0 +1,48 @@
+<button 
+  class="chat-button" 
+  (click)="toggleChat()"
+  >
+  <img src="/assets/chat-icons/robot.svg" alt="Chat" />
+</button>
+
+<div 
+  class="chat-modal" 
+  [class.active]="isOpen"
+>
+
+
+    <div class="modal-content-intercambiable">
+      <div id="inicio" class="tab-content" [class.active]="activeTab === 'inicio'">
+        <app-inicio></app-inicio>
+      </div>
+      <div id="mensajes" class="tab-content" [class.active]="activeTab === 'mensajes'">
+        <app-mensajes></app-mensajes>
+      </div>
+      <div id="ayuda" class="tab-content" [class.active]="activeTab === 'ayuda'">
+        <app-ayuda></app-ayuda>
+      </div>
+      <div id="tareas" class="tab-content" [class.active]="activeTab === 'tareas'">
+        <app-tareas></app-tareas>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <a href="#" [class.active]="activeTab === 'inicio'" (click)="switchTab('inicio')">
+        <div class="nav-dot"></div>
+        Inicio
+      </a>
+      <a href="#" [class.active]="activeTab === 'mensajes'" (click)="switchTab('mensajes')">
+        <div class="nav-dot"></div>
+        Mensajes
+      </a>
+      <a href="#" [class.active]="activeTab === 'tareas'" (click)="switchTab('tareas')">
+        <div class="nav-dot"></div>
+        Tareas
+      </a>
+      <a href="#" [class.active]="activeTab === 'ayuda'" (click)="switchTab('ayuda')">
+        <div class="nav-dot"></div>
+        Ayuda
+      </a>
+    </div>
+</div>
+
