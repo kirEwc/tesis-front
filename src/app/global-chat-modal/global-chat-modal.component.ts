@@ -16,14 +16,14 @@ export class GlobalChatModalComponent {
   
   isOpen = false;
   activeTab = 'inicio';
+  
+   public switchTab(tabId: string) {
+      this.activeTab = tabId;
+    }
 
 
   toggleChat() {
     this.isOpen = !this.isOpen;
-  }
-
- public switchTab(tabId: string) {
-    this.activeTab = tabId;
   }
 
   @HostListener('document:click', ['$event'])

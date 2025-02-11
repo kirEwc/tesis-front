@@ -1,29 +1,36 @@
-<div class="tab-content">
+<div class="tab-content" [class.active]="isOpen">
     <div class="header">
       <div class="title">
-        <span>Mensajes</span>
+        <span>Mensajes </span>
       </div>
       <button class="close-button" (click)="onClose()">×</button>
     </div>
     
-    <div class="content">
-      <a href="#" >
-        <!-- (click)="openDialog('1')" -->
+    <!-- Contenido de Mensajes -->
+    <div id="Mensajes" class="content-chats" [class.active]="activeChat === 'Mensajes'"  >
+      <!-- chat #1 -->
+      <a href="#" [class.active]="activeChat === 'SIGIES'" (click)="switchChat('SIGIES')">
         <img src="../../../../assets/default-avatar.png" alt="Avatar" />
         <div class="chat-info">
           <h2>Equipo SIGIES </h2>
           <p>El ultimo mensaje que se envio </p>
         </div>
         <span>></span>
-      </a>
-      <div class="chat">
-        <img src="/assets/robot.svg" alt="Avatar" />
-        <div class="chat-info">
-          <h2>Chat 2</h2>
-          <p>Contenido del chat 2</p>
-        </div>
+        </a>
+
+        <!-- chat #2 -->
+        
       </div>
-    </div>
+
+ 
+      <!-- Contenido dentro de los Chats -->
+
+      <div id="SIGIES" class="chat" [class.active]="activeChat === 'SIGIES'">
+        <p>Contenido del chat #1</p>
+      </div>
+
+
+
   </div>
   
   

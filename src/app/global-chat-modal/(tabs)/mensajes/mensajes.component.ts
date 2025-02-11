@@ -1,4 +1,5 @@
-import { Component,Output, EventEmitter } from '@angular/core';
+import { Component, } from '@angular/core';
+import { GlobalChatModalComponent } from '../../global-chat-modal.component';
 
 @Component({
   selector: 'app-mensajes',
@@ -8,9 +9,19 @@ import { Component,Output, EventEmitter } from '@angular/core';
   styleUrl: './mensajes.component.scss'
 })
 export class MensajesComponent {
-  @Output() close = new EventEmitter<void>()
 
-  onClose() {
-    this.close.emit()
-  }
+  constructor (private Instancia: GlobalChatModalComponent) { }
+  
+  isOpen = this.Instancia.isOpen;
+  activeChat = 'Mensajes';
+  
+   public switchChat(tabId: string) {
+      this.activeChat = tabId;
+    }
+
+    public onClose() {
+      this.Instancia.toggleChat() ;
+    }
+
+
 }
