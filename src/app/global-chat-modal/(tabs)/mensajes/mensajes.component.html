@@ -1,7 +1,10 @@
 <div class="tab-content" [class.active]="isOpen">
     <div class="header">
+      <div class="atras-foto" [class.active]="activeChat !== 'Mensajes'">
+        <a href="#" [class.active]="activeChat === 'Mensajes'" (click)="switchChat('Mensajes')"><span><</span></a>
+      </div>
       <div class="title">
-        <span>Mensajes </span>
+        <span>{{activeChat}} </span>
       </div>
       <button class="close-button" (click)="onClose()">×</button>
     </div>
@@ -19,14 +22,22 @@
         </a>
 
         <!-- chat #2 -->
+        <a href="#" class="chat-item" [class.active]="activeChat === 'Equipo'" (click)="switchChat('Equipo')">
+          <img src="../../../../assets/default-avatar.png" alt="Avatar" />
+          <div class="chat-info">
+            <h2>Equipo</h2>
+            <p>El ultimo mensaje que se envio </p>
+          </div>
+          <span>></span>
+          </a>
         
       </div>
 
  
       <!-- Contenido dentro de los Chats -->
 
-      <div id="SIGIES" class="chat" [class.active]="activeChat === 'SIGIES'">
-        <p>Contenido del chat #1</p>
+      <div id="chat" class="chat" [class.active]="activeChat !== 'Mensajes'">
+        <app-chat></app-chat>
       </div>
 
 

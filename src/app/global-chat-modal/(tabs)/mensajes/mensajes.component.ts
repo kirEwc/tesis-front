@@ -1,10 +1,11 @@
 import { Component, } from '@angular/core';
 import { GlobalChatModalComponent } from '../../global-chat-modal.component';
+import { ChatComponent } from './chat/chat.component';
 
 @Component({
   selector: 'app-mensajes',
   standalone: true,
-  imports: [],
+  imports: [ChatComponent],
   templateUrl: './mensajes.component.html',
   styleUrl: './mensajes.component.scss'
 })
