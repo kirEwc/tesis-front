@@ -21,7 +21,7 @@ export class ChatComponent {
   messages: Message[] = [];
   newMessage: string = '';
   isTyping: boolean = false;
-  private typingEffect: any;
+  private typingEffect: ReturnType<typeof setInterval> | null = null; // Cambiar a ReturnType
 
   sendMessage() {
     if (this.newMessage.trim()) {
