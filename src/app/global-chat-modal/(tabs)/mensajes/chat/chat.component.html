@@ -20,9 +20,18 @@
   <input type="text" 
          [(ngModel)]="newMessage" 
          (keyup.enter)="sendMessage()" 
-         placeholder="Escribe un mensaje..."
-         [disabled]="isTyping">
-  <button (click)="sendMessage()" [disabled]="isTyping || !newMessage.trim()">
+         [disabled]="isTyping"
+         placeholder="Escribe un mensaje...">
+  
+  <button *ngIf="!isTyping" 
+          (click)="sendMessage()" 
+          [disabled]="!newMessage.trim()">
     Enviar
+  </button>
+  
+  <button *ngIf="isTyping" 
+          (click)="stopMessage()" 
+          class="stop-button">
+    ⏹️
   </button>
 </div>

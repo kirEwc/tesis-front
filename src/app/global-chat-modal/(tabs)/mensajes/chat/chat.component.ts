@@ -21,6 +21,7 @@ export class ChatComponent {
   messages: Message[] = [];
   newMessage: string = '';
   isTyping: boolean = false;
+  private typingEffect: any;
 
   sendMessage() {
     if (this.newMessage.trim()) {
@@ -45,15 +46,13 @@ export class ChatComponent {
         });
 
         // Simular efecto de escritura
-        const typingEffect = setInterval(() => {
+        this.typingEffect = setInterval(() => {
           if (displayedText.length < response.length) {
             displayedText += response[displayedText.length];
             this.messages[this.messages.length - 1].content = displayedText;
             this.scrollToBottom();
           } else {
-            clearInterval(typingEffect);
-            this.messages[this.messages.length - 1].isTyping = false;
-            this.isTyping = false;
+            this.stopTypingEffect();
           }
         }, 50);
       }, 3000);
@@ -68,5 +67,18 @@ export class ChatComponent {
         this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
       } catch(err) { console.error(err);}
     }, 100);
+  }
+
+  stopMessage() {
+    this.stopTypingEffect();
+  }
+
+  private stopTypingEffect() {
+    if (this.typingEffect) {
+      clearInterval(this.typingEffect);
+      this.typingEffect = null;
+      this.messages[this.messages.length - 1].isTyping = false;
+      this.isTyping = false;
+    }
   }
 }
