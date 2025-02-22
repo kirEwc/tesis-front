@@ -1,1 +1,28 @@
-<p>chat works!</p>
+<div #chatContainer class="chat-container">
+  <div class="messages">
+    <div *ngFor="let message of messages" 
+         [class.message-user]="message.isUser"
+         [class.message-bot]="!message.isUser"
+         class="message">
+      <div class="message-content">
+        {{ message.content }}
+        <div *ngIf="message.isTyping" class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="input-area">
+  <input type="text" 
+         [(ngModel)]="newMessage" 
+         (keyup.enter)="sendMessage()" 
+         placeholder="Escribe un mensaje..."
+         [disabled]="isTyping">
+  <button (click)="sendMessage()" [disabled]="isTyping || !newMessage.trim()">
+    Enviar
+  </button>
+</div>
