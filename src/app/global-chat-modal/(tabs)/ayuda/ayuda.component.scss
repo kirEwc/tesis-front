@@ -84,6 +84,8 @@
   }
   
   .content {
+    max-height: 400px;
+    overflow-y: auto;
     padding: 16px;
     min-height: 400px;
 
@@ -91,6 +93,37 @@
     p {
       color: #d1d5db;
     }
+    
+    a {
+      color: #3c8dbc;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
+  
+  
+.help-item {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.help-title {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.help-content {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+}
   
   

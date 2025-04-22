@@ -5,8 +5,16 @@
       </div>
       <button class="close-button" (click)="onClose()">×</button>
     </div>
-    <div class="content">
-      <p>Contenido de ayuda aquí.</p>
+    <div class="content help-section">
+      <div *ngFor="let item of helpItems" class="help-item">
+        <div class="help-title" (click)="toggleHelp(item)">
+          <span>{{ item.title }}</span>
+          <span>{{ item.expanded ? '-' : '+' }}</span>
+        </div>
+        <div *ngIf="item.expanded" class="help-content">
+          <p>{{ item.content }}</p>
+        </div>
+      </div>
     </div>
   </div>
   

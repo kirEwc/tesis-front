@@ -2,12 +2,11 @@ import { Component, HostListener } from '@angular/core';
 import { InicioComponent } from "./(tabs)/inicio/inicio.component";
 import { MensajesComponent } from "./(tabs)/mensajes/mensajes.component";
 import { AyudaComponent } from "./(tabs)/ayuda/ayuda.component";
-import { TareasComponent } from "./(tabs)/tareas/tareas.component";
 
 @Component({
   selector: 'app-global-chat-modal',
   standalone: true,
-  imports: [InicioComponent, MensajesComponent, AyudaComponent, TareasComponent],
+  imports: [InicioComponent, MensajesComponent, AyudaComponent],
   templateUrl: './global-chat-modal.component.html',
   styleUrl: './global-chat-modal.component.scss'
 })

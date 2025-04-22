@@ -21,9 +21,7 @@
       <div id="ayuda" class="tab-content" [class.active]="activeTab === 'ayuda'">
         <app-ayuda></app-ayuda>
       </div>
-      <div id="tareas" class="tab-content" [class.active]="activeTab === 'tareas'">
-        <app-tareas></app-tareas>
-      </div>
+      
     </div>
 
     <div class="nav-bar">
@@ -35,10 +33,7 @@
         <img src="/assets/chat-icons/message.svg" alt="Mensajes"  class="icono"/>
         Mensajes
       </a>
-      <a href="#" [class.active]="activeTab === 'tareas'" (click)="switchTab('tareas')">
-        <img src="/assets/chat-icons/task.svg" alt="Tareas"  class="icono"/>
-        Tareas
-      </a>
+      
       <a href="#" [class.active]="activeTab === 'ayuda'" (click)="switchTab('ayuda')">
         <img src="/assets/chat-icons/help.svg" alt="Ayuda"  class="icono"/>
         Ayuda

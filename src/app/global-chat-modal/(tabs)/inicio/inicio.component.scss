@@ -102,23 +102,21 @@
     }
   
     .action-button {
-      margin-top: 16px;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    margin: 16px 0;
   
-      button {
-        background-color: #3b82f6;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 9999px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s;
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3c8dbc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
   
-        &:hover {
-          background-color: #2563eb;
-        }
+      &:hover {
+        background-color: #2980b9;
       }
     }
   
@@ -141,4 +139,4 @@
     }
   }
   
-  
+}

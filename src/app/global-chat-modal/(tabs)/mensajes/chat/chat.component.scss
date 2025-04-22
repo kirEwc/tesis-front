@@ -18,14 +18,14 @@
 
     &.message-user {
       align-self: flex-end;
-      background-color: #534816;
+      background-color: #3c8dbc;
       color: white;
       border-bottom-right-radius: 0.3rem;
     }
 
     &.message-bot {
       align-self: flex-start;
-      background-color: #1e1f1e;
+      background-color: #222d32;
       color: #ffffff;
       border-bottom-left-radius: 0.3rem;
     }
@@ -64,33 +64,33 @@
 
   input {
     flex: 1;
-    color: #111827;
+    color: #333;
     padding: 0.5rem 1rem;
     border: 1px solid #ddd;
     border-radius: 1.5rem;
     outline: none;
 
     &:focus {
-      border-color: #007bff;
+      border-color: #3c8dbc;
     }
   }
 
   button {
     padding: 0.5rem .5rem;
-    background: #007bff;
+    background: #3c8dbc;
     color: white;
     border: none;
     border-radius: 1.5rem;
     cursor: pointer;
 
     &:disabled {
-      background: #007bff;
+      background: #3c8dbc;
       cursor: not-allowed;
       opacity: 0.5;
     }
 
     &:hover:not(:disabled) {
-      background: #0056b3;
+      background: #2980b9;
     }
   }
 }
