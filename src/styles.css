@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import './assets/AdminLTE.min.css'; */
 /* @import './assets/bootstrap.min.css'; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 .login-box {
