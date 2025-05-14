@@ -5,8 +5,11 @@
       </div>
       <button class="close-button" (click)="onClose()">×</button>
     </div>
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar en la ayuda...">
+    </div>
     <div class="content help-section">
-      <div *ngFor="let item of helpItems" class="help-item">
+      <div *ngFor="let item of filteredHelpItems" class="help-item">
         <div class="help-title" (click)="toggleHelp(item)">
           <span>{{ item.title }}</span>
           <span>{{ item.expanded ? '-' : '+' }}</span>

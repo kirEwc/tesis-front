@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importar CommonModule
+import { FormsModule } from '@angular/forms'; // Importar FormsModule
 
 interface HelpItem {
   title: string;
@@ -11,11 +12,13 @@ interface HelpItem {
 @Component({
   selector: 'app-ayuda',
   standalone: true,
-  imports: [CommonModule], // Añadir CommonModule a los imports
+  imports: [CommonModule, FormsModule], // Añadir FormsModule a los imports
   templateUrl: './ayuda.component.html',
   styleUrl: './ayuda.component.scss'
 })
 export class AyudaComponent {
+
+  searchTerm: string = '';
 
   helpItems: HelpItem[] = [
     {
@@ -34,6 +37,17 @@ export class AyudaComponent {
       expanded: false
     }
   ];
+
+  get filteredHelpItems(): HelpItem[] {
+    if (!this.searchTerm) {
+      return this.helpItems;
+    }
+    const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+    return this.helpItems.filter(item =>
+      item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      item.content.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  }
 
 
   

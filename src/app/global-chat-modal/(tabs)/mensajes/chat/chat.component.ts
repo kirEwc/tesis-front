@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 interface Message {
   content: string;
@@ -16,6 +17,8 @@ interface Message {
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent {
+  
+  constructor(private http: HttpClient) {}
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
   
   messages: Message[] = [];
@@ -24,42 +27,59 @@ export class ChatComponent {
   private typingEffect: ReturnType<typeof setInterval> | null = null; // Cambiar a ReturnType
 
   sendMessage() {
-    if (this.newMessage.trim()) {
-      // Agregar mensaje del usuario
-      this.messages.push({
-        content: this.newMessage,
-        isUser: true
-      });
-
-      const userMessage = this.newMessage;
-      this.newMessage = '';
-      this.isTyping = true;
-
-      // Simular respuesta después de 3 segundos
-      setTimeout(() => {
-        const response = `Respuesta a: ${userMessage}`;
-        let displayedText = '';
-        this.messages.push({
-          content: '',
-          isUser: false,
-          isTyping: true
-        });
-
-        // Simular efecto de escritura
-        this.typingEffect = setInterval(() => {
-          if (displayedText.length < response.length) {
-            displayedText += response[displayedText.length];
-            this.messages[this.messages.length - 1].content = displayedText;
+    const userMessage = this.newMessage.trim();
+    if (!userMessage) return;
+  
+    this.messages.push({
+      content: userMessage,
+      isUser: true
+    });
+  
+    this.newMessage = '';
+    this.isTyping = true;
+  
+    // Agrega mensaje vacío con indicador de escritura
+    this.messages.push({
+      content: '',
+      isUser: false,
+      isTyping: true
+    });
+  
+    this.http.post<{ respuesta: string }>('http://localhost:3000/chat/preguntar', {
+      pregunta: userMessage
+    }).subscribe({
+      next: (res) => {
+        const fullResponse = res.respuesta;
+        let currentText = '';
+        let index = 0;
+  
+        // Animar letra por letra
+        const interval = setInterval(() => {
+          if (index < fullResponse.length) {
+            currentText += fullResponse[index];
+            this.messages[this.messages.length - 1].content = currentText;
+            index++;
             this.scrollToBottom();
           } else {
-            this.stopTypingEffect();
+            clearInterval(interval);
+            this.messages[this.messages.length - 1].isTyping = false;
+            this.isTyping = false;
           }
-        }, 50);
-      }, 3000);
-
-      this.scrollToBottom();
-    }
+        }, 25); // velocidad de escritura
+  
+      },
+      error: (err) => {
+        console.error('❌ Error en la petición:', err);
+        this.messages[this.messages.length - 1] = {
+          content: '⚠️ Error al obtener la respuesta del servidor.',
+          isUser: false
+        };
+        this.isTyping = false;
+      }
+    });
   }
+  
+  
 
   scrollToBottom(): void {
     setTimeout(() => {

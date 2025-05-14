@@ -118,6 +118,7 @@
     a{
       padding-left: 10px;
       padding-right: 10px;
+      padding-bottom: 1rem;
       text-decoration: none;
       color: #bdc3c7;
       display: flex;
@@ -164,6 +165,9 @@
   
       .chat-info {
         h2 {
+          display: flex;
+          align-items: center;
+
           font-size: 18px;
           font-weight: bold;
         }

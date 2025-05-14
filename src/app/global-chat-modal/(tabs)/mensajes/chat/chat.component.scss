@@ -99,3 +99,10 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-0.5rem); }
 }
+
+.typing-indicator .typing-text {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  color: #aaa;
+  align-self: center;
+}
