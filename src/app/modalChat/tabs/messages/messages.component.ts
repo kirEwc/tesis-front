@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ConversationComponent } from "./conversation/conversation.component";
 
 interface Message {
   id: number;
@@ -10,22 +11,17 @@ interface Message {
   agentId?: number;
 }
 
-interface SupportAgent {
-  id: number;
-  name: string;
-  avatar: string;
-}
+
 
 @Component({
   selector: 'app-messages-tab',
   standalone: true,
-  imports: [CommonModule, ],
+  imports: [CommonModule, ConversationComponent],
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesTabComponent {
   @Input() messages: Message[] = [];
-  @Input() supportAgents: SupportAgent[] = [];
   @Output() conversationOpened = new EventEmitter<void>();
   
 
@@ -33,6 +29,5 @@ export class MessagesTabComponent {
   openConversation(): void {
     this.conversationOpened.emit();
   }
-
 
 }
