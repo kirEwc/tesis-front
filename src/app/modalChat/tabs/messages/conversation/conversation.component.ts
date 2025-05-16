@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -19,11 +19,16 @@ interface Message {
 })
 export class ConversationComponent {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
+  @Output() backToMessages = new EventEmitter<string>();
   
   messages: Message[] = [];
   newMessage: string = '';
   isTyping: boolean = false;
   private typingEffect: ReturnType<typeof setInterval> | null = null;
+
+  switchChat(tabId: string) {
+    this.backToMessages.emit(tabId);
+  }
 
   constructor(private http: HttpClient) {
     // Inicializar con un mensaje de bienvenida

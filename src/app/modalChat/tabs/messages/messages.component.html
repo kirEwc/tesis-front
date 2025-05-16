@@ -34,7 +34,7 @@
 
   
   <!-- Contenido del chat -->
-  <div id="chat" class="chat" [class.active]="activeChat !== 'Mensajes'">
-    <app-conversation></app-conversation>
+  <div id="chat" class="chat" [class.active]="activeChat === 'CHAT'">
+    <app-conversation (backToMessages)="switchChat($event)"></app-conversation>
   </div>
 </div>
