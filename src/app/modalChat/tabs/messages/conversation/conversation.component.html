@@ -1,1 +1,47 @@
+<div id="chat-container" #chatContainer class="chat-container">
+  <div class="options">
+    <div id="back" class="back"><img class="img-back" src="../../../../../assets/icon-back.png" alt=""></div>
+    <div class="other-options">
+      <div class="new-conversation"><img class="img-new-c" src="../../../../../assets/new-conversation-icon.png" alt=""></div>
+      <div class="chat-clean"><img class="img-clean" src="../../../../../assets/icon-clean.png" alt=""></div>
+    </div>
+  </div>
+  <div class="messages">
+    <div *ngFor="let message of messages" 
+         [class.message-user]="message.isUser"
+         [class.message-bot]="!message.isUser"
+         class="message">
+      <div class="message-content">
+        {{ message.content }}
+        <div *ngIf="message.isTyping" class="typing-indicator">
+          <span></span><span></span><span></span>
+          <small class="typing-text">escribiendo...</small>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="message-input">
+  <input type="text" 
+         [(ngModel)]="newMessage" 
+         (keyup.enter)="sendMessage()" 
+         [disabled]="isTyping"
+         placeholder="Escribe un mensaje...">
+  
+  <button class="send-button" *ngIf="!isTyping" 
+          (click)="sendMessage()" 
+          [disabled]="!newMessage.trim()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send">
+      <path d="m22 2-7 20-4-9-9-4Z"/>
+      <path d="M22 2 11 13"/>
+    </svg>
+  </button>
+  
+  <button *ngIf="isTyping" 
+          (click)="stopMessage()" 
+          class="stop-button">
+    <div class="stop-icon"></div>
+  </button>
+</div>

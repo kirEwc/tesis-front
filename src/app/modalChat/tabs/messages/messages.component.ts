@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit,ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConversationComponent } from "./conversation/conversation.component";
 
@@ -11,8 +11,6 @@ interface Message {
   agentId?: number;
 }
 
-
-
 @Component({
   selector: 'app-messages-tab',
   standalone: true,
@@ -20,14 +18,23 @@ interface Message {
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
-export class MessagesTabComponent {
+export class MessagesTabComponent implements OnInit {
   @Input() messages: Message[] = [];
   @Output() conversationOpened = new EventEmitter<void>();
+  @ViewChild(ConversationComponent) conversationComponent!: ConversationComponent;
   
+  activeChat: string = 'Mensajes';
 
-
-  openConversation(): void {
-    this.conversationOpened.emit();
+  ngOnInit(): void {
+    // Inicializar componente
+    console.log('MessagesTabComponent inicializado');
   }
 
+  public switchChat(tabId: string) {
+    this.activeChat = tabId;
+  }
+  public getActiveChat() {
+    return this.activeChat;
+  }
+  
 }
