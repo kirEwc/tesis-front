@@ -206,7 +206,9 @@
 
 .options {
   display: flex;
-  // color: white;
+  position: fixed;
+  top: 65px;
+  left: 0;
   width: 100%;
   height: 20px;
   justify-content: space-between;
@@ -214,12 +216,26 @@
   // border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   .back{
     display: flex;
+    height: 20px;
     align-items: center;
     justify-content: center;
-   .img-back{
-    width: 20px;
-    height: 20px;
-   }
+    background-color: rgba(33, 43, 88, 0.7);
+    border-radius: 12px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+      background-color: rgba(33, 43, 88, 0.9);
+      transform: scale(1.05);
+    }
+    
+    .img-back{
+      overflow: hidden;
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
   }
   .other-options{
     display: flex;
@@ -231,18 +247,44 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: rgba(33, 43, 88, 0.7);
+      border-radius: 12px;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      
+      &:hover {
+        background-color: rgba(33, 43, 88, 0.9);
+        transform: scale(1.05);
+      }
+      
       .img-new-c{
+        overflow: hidden;
         width: 20px;
         height: 20px;
+        object-fit: contain;
       }
     }
     .chat-clean{
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: rgba(33, 43, 88, 0.7);
+      border-radius: 12px;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      
+      &:hover {
+        background-color: rgba(33, 43, 88, 0.9);
+        transform: scale(1.05);
+      }
+      
       .img-clean{
+        overflow: hidden;
         width: 20px;
         height: 20px;
+        object-fit: contain;
       }
     }
   }
