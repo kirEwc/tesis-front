@@ -51,156 +51,92 @@
   }
 }
 
-.help-articles {
+.help-section {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 16px;
   
-  .help-article {
-    display: flex;
-    align-items: center;
+  .help-item {
     background-color: #0e303a;
     border-radius: 12px;
-    padding: 16px;
-    cursor: pointer;
-    transition: all 0.2s;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    margin-bottom: 8px;
     
     &:hover {
-      background-color: rgba(255, 255, 255, 0.18);
-      transform: translateY(-2px);
+      background-color: rgba(14, 48, 58, 0.8);
     }
     
-    .article-icon {
-      width: 40px;
-      height: 40px;
+    .help-title {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      margin-right: 16px;
-      color: #0099ff;
-      flex-shrink: 0;
+      padding: 16px;
+      cursor: pointer;
+      font-weight: 500;
+      color: #ffffff;
+      
+      .toggle-icon {
+        color: #0099ff;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
     }
     
-    .article-info {
-      flex: 1;
-      min-width: 0;
-      
-      h4 {
-        font-size: 1rem;
-        font-weight: 600;
-        margin: 0 0 4px 0;
-        color: #ffffff;
-      }
+    .help-content {
+      padding: 0 16px 16px;
+      color: #e0e0e0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       
       p {
-        font-size: 0.85rem;
-        color: #e0e0e0;
         margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
-    }
-    
-    .article-arrow {
-      color: rgba(255, 255, 255, 0.5);
-      margin-left: 12px;
     }
   }
 }
 
+.no-results {
+  text-align: center;
+  padding: 20px;
+  color: #b0b0b0;
+  font-style: italic;
+}
+
 .help-article-view {
   .article-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     
     .back-button {
-      background: transparent;
-      border: none;
-      color: white;
-      cursor: pointer;
-      padding: 8px;
-      margin-right: 8px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: transform 0.2s;
+      gap: 8px;
+      background: transparent;
+      border: none;
+      color: #0099ff;
+      cursor: pointer;
+      padding: 8px;
+      font-size: 0.9rem;
+      transition: color 0.2s;
       
       &:hover {
-        transform: scale(1.1);
+        color: #33adff;
       }
-    }
-    
-    h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 0;
     }
   }
   
+  .article-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #ffffff;
+  }
+  
   .article-content {
-    .article-icon.large {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-      color: #0099ff;
-    }
-    
-    .article-description {
-      font-size: 1rem;
-      line-height: 1.5;
-      margin-bottom: 24px;
-    }
-    
-    .article-extended-content {
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 16px;
-      
-      p {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-bottom: 16px;
-      }
-      
-      h4 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin: 16px 0 12px;
-      }
-      
-      ol {
-        padding-left: 24px;
-        margin-bottom: 24px;
-        
-        li {
-          margin-bottom: 8px;
-          font-size: 0.95rem;
-        }
-      }
-      
-      .help-cta {
-        display: flex;
-        justify-content: center;
-        margin-top: 24px;
-        
-        .contact-support-btn {
-          background: linear-gradient(135deg, #0099ff, #0077cc);
-          border: none;
-          color: white;
-          font-weight: 600;
-          padding: 12px 24px;
-          border-radius: 24px;
-          cursor: pointer;
-          transition: all 0.2s;
-          
-          &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-          }
-        }
-      }
-    }
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 }

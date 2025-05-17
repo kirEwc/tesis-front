@@ -7,6 +7,7 @@ interface HelpArticle {
   title: string;
   content: string;
   icon: string;
+  expanded?: boolean;
 }
 
 @Component({
@@ -22,6 +23,17 @@ export class HelpTabComponent {
   
   selectedHelpArticle: HelpArticle | null = null;
   searchQuery = '';
+  filteredHelpItems: HelpArticle[] = [];
+
+  ngOnInit(): void {
+    // Inicializar los artículos filtrados con todos los artículos disponibles
+    this.filteredHelpItems = [...this.helpArticles];
+  }
+
+  ngOnChanges(): void {
+    // Actualizar los artículos filtrados cuando cambien los artículos de entrada
+    this.filteredHelpItems = [...this.helpArticles];
+  }
 
   selectHelpArticle(article: HelpArticle): void {
     this.selectedHelpArticle = article;
@@ -32,8 +44,22 @@ export class HelpTabComponent {
   }
 
   searchHelp(): void {
-    // Esta función se implementaría para filtrar los artículos de ayuda
-    console.log('Buscando:', this.searchQuery);
+    if (this.searchQuery.trim() === '') {
+      // Si la búsqueda está vacía, mostrar todos los artículos
+      this.filteredHelpItems = [...this.helpArticles];
+    } else {
+      // Filtrar artículos que coincidan con la búsqueda (título o contenido)
+      const query = this.searchQuery.toLowerCase();
+      this.filteredHelpItems = this.helpArticles.filter(item => 
+        item.title.toLowerCase().includes(query) || 
+        item.content.toLowerCase().includes(query)
+      );
+    }
+  }
+
+  toggleHelp(item: HelpArticle): void {
+    // Alternar la expansión del elemento de ayuda
+    item.expanded = !item.expanded;
   }
 
   contactSupport(): void {

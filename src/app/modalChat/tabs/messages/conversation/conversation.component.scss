@@ -207,86 +207,42 @@
 .options {
   display: flex;
   position: fixed;
-  top: 65px;
+  top: 50px;
   left: 0;
   width: 100%;
-  height: 20px;
   justify-content: space-between;
   padding: 15px;
   // border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  .back{
+  
+  .back, .new-conversation, .chat-clean {
     display: flex;
-    height: 20px;
     align-items: center;
     justify-content: center;
+    width: 28px;
+    height: 28px;
     background-color: rgba(33, 43, 88, 0.7);
     border-radius: 12px;
-    padding: 8px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    padding: 0;
     
     &:hover {
       background-color: rgba(33, 43, 88, 0.9);
       transform: scale(1.05);
     }
     
-    .img-back{
-      overflow: hidden;
+    img {
       width: 20px;
       height: 20px;
       object-fit: contain;
     }
   }
-  .other-options{
+  
+  .other-options {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 10px;
-
-    .new-conversation{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(33, 43, 88, 0.7);
-      border-radius: 12px;
-      padding: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      
-      &:hover {
-        background-color: rgba(33, 43, 88, 0.9);
-        transform: scale(1.05);
-      }
-      
-      .img-new-c{
-        overflow: hidden;
-        width: 20px;
-        height: 20px;
-        object-fit: contain;
-      }
-    }
-    .chat-clean{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(33, 43, 88, 0.7);
-      border-radius: 12px;
-      padding: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      
-      &:hover {
-        background-color: rgba(33, 43, 88, 0.9);
-        transform: scale(1.05);
-      }
-      
-      .img-clean{
-        overflow: hidden;
-        width: 20px;
-        height: 20px;
-        object-fit: contain;
-      }
-    }
   }
 }
 

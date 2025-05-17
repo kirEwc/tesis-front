@@ -17,8 +17,38 @@
     </div>
     
     <h3 class="section-title">Centro de ayuda</h3>
+    <div class="content help-section">
+      <div *ngFor="let item of filteredHelpItems" class="help-item">
+        <div class="help-title" (click)="toggleHelp(item)">
+          <span>{{ item.title }}</span>
+          <span class="toggle-icon">{{ item.expanded ? '-' : '+' }}</span>
+        </div>
+        <div *ngIf="item.expanded" class="help-content">
+          <p>{{ item.content }}</p>
+        </div>
+      </div>
+    </div>
     
-    
+    <!-- Mensaje cuando no hay resultados -->
+    <div *ngIf="filteredHelpItems.length === 0" class="no-results">
+      <p>No se encontraron resultados para "{{ searchQuery }}"</p>
+    </div>
+  </div>
   
-  
+  <!-- Vista de artículo seleccionado -->
+  <div *ngIf="selectedHelpArticle" class="help-article-view">
+    <div class="article-header">
+      <button class="back-button" (click)="backToHelpList()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left">
+          <path d="m12 19-7-7 7-7"/>
+          <path d="M19 12H5"/>
+        </svg>
+        Volver
+      </button>
+    </div>
+    <h2 class="article-title">{{ selectedHelpArticle.title }}</h2>
+    <div class="article-content">
+      <p>{{ selectedHelpArticle.content }}</p>
+    </div>
+  </div>
 </div>
