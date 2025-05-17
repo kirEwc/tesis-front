@@ -7,6 +7,7 @@
       <div class="chat-clean"><img class="img-clean" src="../../../../../assets/icon-clean.png" alt=""></div>
     </div>
   </div>
+
   <div class="messages">
     <div *ngFor="let message of messages" 
          [class.message-user]="message.isUser"
@@ -15,13 +16,13 @@
       <div class="message-content">
         {{ message.content }}
         <div *ngIf="message.isTyping" class="typing-indicator">
+          <!-- estos 3 span son para el indicador de escritura (...) -->
           <span></span><span></span><span></span>
-          <small class="typing-text">escribiendo...</small>
         </div>
-        
       </div>
     </div>
   </div>
+  
 </div>
 
 <div class="message-input">

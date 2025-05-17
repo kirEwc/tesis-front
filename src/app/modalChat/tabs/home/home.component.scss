@@ -6,16 +6,12 @@
   margin-bottom: 20px;
   text-align: center;
   
-  h2 {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-    font-weight: 600;
+  h1 {
     color: #ffffff;
   }
   
-  p {
+  h4 {
     color: #e0e0e0;
-    font-size: 1rem;
   }
   
   .wave {
@@ -37,45 +33,34 @@
   100% { transform: rotate(0deg); }
 }
 
-.message-input {
+.chat-button {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   margin-bottom: 20px;
   background-color: #0a102a;
+  border: none;
   border-radius: 24px;
-  padding: 8px 16px;
+  padding: 12px 24px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 10px;
   
-  input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    padding: 8px 0;
-    font-size: 0.95rem;
+  &:hover {
+    background-color: #121d4a;
+    transform: translateY(-2px);
     
-    &:focus {
-      outline: none;
-    }
-    
-    &::placeholder {
-      color: #b0b0b0;
+    svg {
+      color: #33adff;
     }
   }
   
-  .send-button {
-    background: transparent;
-    border: none;
+  svg {
     color: #0099ff;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-    
-    &:hover {
-      transform: scale(1.1);
-      color: #33adff;
-    }
+    transition: color 0.2s ease;
   }
 }
 
@@ -85,14 +70,14 @@
   gap: 12px;
   
   .topic {
-    background-color: #0e303a;
+    background-color: rgba(255, 255, 255, 0.18);
     border-radius: 12px;
     padding: 16px;
     cursor: pointer;
     transition: all 0.2s;
     
     &:hover {
-      background-color: rgba(255, 255, 255, 0.18);
+      background-color: rgba(255, 255, 255, 0.3);
       transform: translateY(-2px);
     }
     

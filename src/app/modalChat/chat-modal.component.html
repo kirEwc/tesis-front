@@ -25,6 +25,7 @@
       [chatTopics]="chatTopics"
       (topicSelected)="selectTopic($event)"
       (messageSent)="handleMessageSent($event)"
+      (navigateToChatTab)="setActiveTab('mensajes')"
     ></app-home-tab>
 
     <!-- Pestaña de Mensajes -->

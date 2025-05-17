@@ -18,6 +18,7 @@ export class HomeTabComponent {
   @Input() chatTopics: ChatTopic[] = [];
   @Output() topicSelected = new EventEmitter<ChatTopic>();
   @Output() messageSent = new EventEmitter<string>();
+  @Output() navigateToChatTab = new EventEmitter<void>();
   
   message = '';
 
@@ -30,5 +31,9 @@ export class HomeTabComponent {
       this.messageSent.emit(this.message);
       this.message = '';
     }
+  }
+
+  navigateToChat(): void {
+    this.navigateToChatTab.emit();
   }
 }
