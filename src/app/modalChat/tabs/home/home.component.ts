@@ -13,12 +13,16 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeTabComponent {
   @Output() navigateToChatTab = new EventEmitter<void>();
+  @Output() navigateToHelpArticle = new EventEmitter<number>();
 
   navigateToChat(): void {
     this.navigateToChatTab.emit();
   }
 
-
+  navigateToFAQ(): void {
+    // Navegar directamente al artículo de ayuda con ID 4 (Preguntas Frecuentes)
+    this.navigateToHelpArticle.emit(4);
+  }
 
   chatTopics = [
     {

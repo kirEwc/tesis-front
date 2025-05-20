@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, ViewChild } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormsModule } from "@angular/forms"
 import { HomeTabComponent } from "./tabs/home/home.component"
@@ -33,6 +33,7 @@ interface HelpArticle {
   styleUrls: ["./chat-modal.component.scss"],
 })
 export class ChatModalComponent implements OnInit {
+  @ViewChild(HelpTabComponent) helpTabComponent!: HelpTabComponent;
   isOpen = false
   message = ""
   activeTab: "inicio" | "mensajes" | "ayuda" = "inicio"
@@ -208,5 +209,22 @@ export class ChatModalComponent implements OnInit {
   contactSupport(): void {
     this.activeConversation = true;
     this.activeTab = 'mensajes';
+  }
+
+  navigateToHelpArticle(articleId: number): void {
+    // Cambiar a la pestaña de ayuda
+    this.activeTab = 'ayuda';
+    
+    // Necesitamos un pequeño retraso para asegurar que el componente de ayuda esté cargado
+    setTimeout(() => {
+      // Usar ViewChild para acceder al componente de ayuda
+      if (this.helpTabComponent) {
+        // Buscar el artículo con ID 4 directamente en el componente de ayuda
+        const faqArticle = this.helpTabComponent.ayudas.find(article => article.id === articleId);
+        if (faqArticle) {
+          this.helpTabComponent.selectHelpArticle(faqArticle);
+        }
+      }
+    }, 100);
   }
 }

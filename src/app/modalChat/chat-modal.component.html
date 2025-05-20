@@ -23,6 +23,7 @@
     <app-home-tab 
       *ngIf="activeTab === 'inicio' && !activeConversation" 
       (navigateToChatTab)="setActiveTab('mensajes')"
+      (navigateToHelpArticle)="navigateToHelpArticle($event)"
     ></app-home-tab>
 
     <!-- Pestaña de Mensajes -->
