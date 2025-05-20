@@ -13,7 +13,7 @@
   </button>
   
   <div class="topics">
-    <div class="topic" *ngFor="let topic of chatTopics" (click)="selectTopic(topic)">
+    <div class="topic" *ngFor="let topic of chatTopics" (click)="navigateToChat()">
       <h3>{{ topic.title }}</h3>
       <p *ngIf="topic.description">{{ topic.description }}</p>
     </div>

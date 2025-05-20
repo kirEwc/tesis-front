@@ -23,7 +23,6 @@ interface HelpArticle {
   id: number
   title: string
   content: string
-  icon: string
 }
 
 @Component({
@@ -109,32 +108,27 @@ export class ChatModalComponent implements OnInit {
     {
       id: 1,
       title: "Guía de inicio rápido",
-      content: "Aprende a usar nuestra plataforma en minutos con esta guía paso a paso.",
-      icon: "book-open",
+      content: "Aprende a usar nuestra plataforma en minutos con esta guía paso a paso."
     },
     {
       id: 2,
       title: "Preguntas frecuentes",
-      content: "Respuestas a las preguntas más comunes de nuestros usuarios.",
-      icon: "help-circle",
+      content: "Respuestas a las preguntas más comunes de nuestros usuarios."
     },
     {
       id: 3,
       title: "Métodos de pago",
-      content: "Información sobre todos los métodos de pago disponibles.",
-      icon: "credit-card",
+      content: "Información sobre todos los métodos de pago disponibles."
     },
     {
       id: 4,
       title: "Términos y condiciones",
-      content: "Información legal importante sobre el uso de nuestros servicios.",
-      icon: "file-text",
+      content: "Información legal importante sobre el uso de nuestros servicios."
     },
     {
       id: 5,
       title: "Contacto directo",
-      content: "Ponte en contacto con nuestro equipo de soporte directamente.",
-      icon: "phone",
+      content: "Ponte en contacto con nuestro equipo de soporte directamente."
     },
   ]
 

@@ -22,9 +22,6 @@
     <!-- Pestaña de Inicio -->
     <app-home-tab 
       *ngIf="activeTab === 'inicio' && !activeConversation" 
-      [chatTopics]="chatTopics"
-      (topicSelected)="selectTopic($event)"
-      (messageSent)="handleMessageSent($event)"
       (navigateToChatTab)="setActiveTab('mensajes')"
     ></app-home-tab>
 
@@ -38,7 +35,6 @@
     <!-- Pestaña de Ayuda -->
     <app-help-tab 
       *ngIf="activeTab === 'ayuda'" 
-      [helpArticles]="helpArticles"
       (contactSupportRequested)="contactSupport()"
     ></app-help-tab>
   </div>
