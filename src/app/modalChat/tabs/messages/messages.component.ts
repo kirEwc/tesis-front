@@ -37,4 +37,13 @@ export class MessagesTabComponent implements OnInit {
     return this.activeChat;
   }
   
+  public nuevaConversacion() {
+    // Switch to the chat view
+    this.activeChat = 'CHAT';
+    
+    // If conversation component is available, trigger new conversation
+    if (this.conversationComponent) {
+      this.conversationComponent.nuevaConversacion();
+    }
+  }
 }

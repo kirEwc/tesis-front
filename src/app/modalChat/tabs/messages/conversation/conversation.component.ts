@@ -214,5 +214,47 @@ export class ConversationComponent implements OnInit {
   }
 
 
+  limpiarChat(){
+    this.http.delete<any>(`http://localhost:3000/Chat/${this.IdChatEnUso}`)
+     .subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.error('❌ Error al limpiar la conversación:', err);
+      },
+      complete: () => {
+        this.nuevaConversacion();
+      }
+     })
+  }
+
+  public nuevaConversacion(){
+     this.http.post<any>(`http://localhost:3000/Chat/1`,{})
+     .subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.error('❌ Error al crear la conversación:', err);
+      }
+     })
+
+     this.getMaxChatId().subscribe({
+      next: (chatId) => {
+        this.cargarMensajes(chatId);
+        this.IdChatEnUso = chatId;
+      },
+      error: (err) => {
+        console.error('❌ Error obteniendo el chat ID:', err);
+        // Fallback si falla, usa un ID por defecto
+        this.cargarMensajes(4);
+        this.IdChatEnUso = 4;
+      }
+    });
+
+    this.switchChat('CHAT');
+  }
+
 
 }
