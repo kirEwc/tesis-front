@@ -214,8 +214,8 @@ export class ConversationComponent implements OnInit {
   }
 
 
-  limpiarChat(){
-    this.http.delete<any>(`http://localhost:3000/Chat/${this.IdChatEnUso}`)
+  limpiarChat(IdChat: number = this.IdChatEnUso){
+    this.http.delete<any>(`http://localhost:3000/Chat/${IdChat}`)
      .subscribe({
       next: (res) => {
         console.log(res);
