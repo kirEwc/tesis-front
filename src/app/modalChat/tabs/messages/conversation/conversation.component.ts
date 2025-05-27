@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, ViewChild, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +17,7 @@ interface Message {
   templateUrl: './conversation.component.html',
   styleUrl: './conversation.component.scss'
 })
-export class ConversationComponent {
+export class ConversationComponent implements OnInit {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
   @Output() backToMessages = new EventEmitter<string>();
   
@@ -30,17 +30,13 @@ export class ConversationComponent {
     this.backToMessages.emit(tabId);
   }
 
-  constructor(private http: HttpClient) {
-    // Inicializar con un mensaje de bienvenida
-    this.messages.push({
-      content: 'Hola, ¿en qué puedo ayudarte hoy?',
-      isUser: false,
-      timestamp: new Date()
-    });
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.cargarMensajes(4); // Cargar mensajes con el chat_id por defecto 4
   }
 
-  
-  sendMessage() {
+  sendMessage(idchat: number = 4) {
     const userMessage = this.newMessage.trim();
     if (!userMessage) return;
   
@@ -59,15 +55,27 @@ export class ConversationComponent {
       isTyping: true
     });
   
-    this.http.post<{ respuesta: string }>('http://localhost:3000/ask-question', {
+    interface AskQuestionResponse {
+      data: {
+        content: string;
+        response: string;
+        create_At: string;
+        chat: {
+          Chat_id: string;
+          Create_At: string;
+        };
+        Message_id: string;
+      };
+    }
+  
+    this.http.post<AskQuestionResponse>(`http://localhost:3000/ask-question/${idchat}`, {
       pregunta: userMessage
     }).subscribe({
       next: (res) => {
-        const fullResponse = res.respuesta;
+        const fullResponse = res.data.response;
         let currentText = '';
         let index = 0;
   
-        // Animar letra por letra
         const interval = setInterval(() => {
           if (index < fullResponse.length) {
             currentText += fullResponse[index];
@@ -79,8 +87,7 @@ export class ConversationComponent {
             this.messages[this.messages.length - 1].isTyping = false;
             this.isTyping = false;
           }
-        }, 25); // velocidad de escritura
-  
+        }, 25);
       },
       error: (err) => {
         console.error('❌ Error en la petición:', err);
@@ -92,6 +99,7 @@ export class ConversationComponent {
       }
     });
   }
+  
   
   scrollToBottom(): void {
     setTimeout(() => {
@@ -112,5 +120,49 @@ export class ConversationComponent {
       this.messages[this.messages.length - 1].isTyping = false;
       this.isTyping = false;
     }
+  }
+
+
+  cargarMensajes(idchat: number = 4) {
+    this.http.get<any>(`http://localhost:3000/Chat/GetMessagesByChat/${idchat}`).subscribe({
+      next: (res) => {
+        if (res.data && res.data.message) {
+          // Limpiar mensajes existentes
+          this.messages = [];
+          
+          // Mapear los mensajes al formato esperado por el componente
+          res.data.message.forEach((msg: any) => {
+            // Mensaje del usuario
+            if (msg.content) {
+              this.messages.push({
+                content: msg.content,
+                isUser: true,
+                timestamp: new Date(msg.create_At)
+              });
+            }
+            
+            // Respuesta del agente
+            if (msg.response) {
+              this.messages.push({
+                content: msg.response,
+                isUser: false,
+                timestamp: new Date(msg.create_At)
+              });
+            }
+          });
+          
+          // Hacer scroll al final de los mensajes
+          this.scrollToBottom();
+        }
+      },
+      error: (err) => {
+        console.error('❌ Error al cargar mensajes:', err);
+        // Mostrar mensaje de error al usuario
+        this.messages = [{
+          content: 'No se pudieron cargar los mensajes. Por favor, intenta nuevamente.',
+          isUser: false
+        }];
+      }
+    });
   }
 }
