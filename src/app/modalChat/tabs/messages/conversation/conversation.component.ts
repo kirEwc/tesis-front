@@ -2,12 +2,25 @@ import { Component, ElementRef, ViewChild, Output, EventEmitter, OnInit } from '
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 interface Message {
   content: string;
   isUser: boolean;
   isTyping?: boolean;
   timestamp?: Date;
+}
+interface ChatResponse {
+  data: {
+    Chat_id: string;
+    Create_At: string;
+    user: {
+      Userid: string;
+      Email: string;
+      Name: string;
+      created_At: string;
+    };
+  }[];
 }
 
 @Component({
@@ -17,6 +30,8 @@ interface Message {
   templateUrl: './conversation.component.html',
   styleUrl: './conversation.component.scss'
 })
+
+
 export class ConversationComponent implements OnInit {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
   @Output() backToMessages = new EventEmitter<string>();
@@ -25,6 +40,7 @@ export class ConversationComponent implements OnInit {
   newMessage: string = '';
   isTyping: boolean = false;
   private typingEffect: ReturnType<typeof setInterval> | null = null;
+  IdChatEnUso: number = 0;
 
   switchChat(tabId: string) {
     this.backToMessages.emit(tabId);
@@ -33,10 +49,23 @@ export class ConversationComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.cargarMensajes(4); // Cargar mensajes con el chat_id por defecto 4
+    this.getMaxChatId().subscribe({
+      next: (chatId) => {
+        this.cargarMensajes(chatId);
+        this.IdChatEnUso = chatId;
+      },
+      error: (err) => {
+        console.error('❌ Error obteniendo el chat ID:', err);
+        // Fallback si falla, usa un ID por defecto
+        this.cargarMensajes(4);
+        this.IdChatEnUso = 4;
+      }
+    });
   }
+  
+ 
 
-  sendMessage(idchat: number = 4) {
+  sendMessage(idchat: number = this.IdChatEnUso) {
     const userMessage = this.newMessage.trim();
     if (!userMessage) return;
   
@@ -123,7 +152,7 @@ export class ConversationComponent implements OnInit {
   }
 
 
-  cargarMensajes(idchat: number = 4) {
+  cargarMensajes(idchat: number = this.IdChatEnUso) {
     this.http.get<any>(`http://localhost:3000/Chat/GetMessagesByChat/${idchat}`).subscribe({
       next: (res) => {
         if (res.data && res.data.message) {
@@ -165,4 +194,25 @@ export class ConversationComponent implements OnInit {
       }
     });
   }
+
+
+  
+  getMaxChatId(userId: number=1): Observable<number> {
+    return this.http.get<ChatResponse>(`http://localhost:3000/Chat/${userId}`).pipe(
+      map((response) => {
+        if (!response?.data?.length) return 0;
+
+        // Convertimos los Chat_id a number y devolvemos el máximo
+        const maxId = Math.max(...response.data.map(chat => Number(chat.Chat_id)));
+        return maxId;
+      }),
+      catchError((error) => {
+        console.error('Error obteniendo los chats:', error);
+        return throwError(() => new Error('Error obteniendo los chats'));
+      })
+    );
+  }
+
+
+
 }
