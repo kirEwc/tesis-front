@@ -24,22 +24,33 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #09f, darken(#09f, 15%));
-  color: white;
+  width: 80px;
+  height: 80px;
+  // border-radius: 50%;
+  // background: linear-gradient(135deg, #09f, darken(#09f, 15%));
+  background-color: none;
+  // color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: $box_shadow;
+  // box-shadow: $box_shadow;
   z-index: 999;
   transition: $transition;
+
+
+  img {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(
+      0 0 10px rgba(0, 0, 0, 0.7)
+    );
+    object-fit: cover;
+  }
   
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    // box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   }
   
   .notification-badge {
