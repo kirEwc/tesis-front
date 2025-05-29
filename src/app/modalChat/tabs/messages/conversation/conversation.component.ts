@@ -49,16 +49,19 @@ export class ConversationComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+
     this.getMaxChatId().subscribe({
       next: (chatId) => {
+        if(chatId === 0||chatId === null||chatId === undefined){
+          this.limpiarChat();
+        }
         this.cargarMensajes(chatId);
         this.IdChatEnUso = chatId;
       },
       error: (err) => {
         console.error('❌ Error obteniendo el chat ID:', err);
         // Fallback si falla, usa un ID por defecto
-        this.cargarMensajes(4);
-        this.IdChatEnUso = 4;
+        this.limpiarChat();
       }
     });
   }
@@ -215,6 +218,12 @@ export class ConversationComponent implements OnInit {
 
 
   limpiarChat(IdChat: number = this.IdChatEnUso){
+    if(IdChat === 0){
+      this.nuevaConversacion();
+      return;
+    }
+
+    
     this.http.delete<any>(`http://localhost:3000/Chat/${IdChat}`)
      .subscribe({
       next: (res) => {
@@ -234,6 +243,11 @@ export class ConversationComponent implements OnInit {
      .subscribe({
       next: (res) => {
         console.log(res);
+        this.messages.push({
+          content: 'Hola, ¿en qué puedo ayudarte hoy?',
+          isUser: false,
+          timestamp: new Date()
+        });
       },
       error: (err) => {
         console.error('❌ Error al crear la conversación:', err);

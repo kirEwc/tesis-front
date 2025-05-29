@@ -43,7 +43,7 @@ export class MessagesTabComponent implements OnInit {
     
     // If conversation component is available, trigger new conversation
     if (this.conversationComponent) {
-      this.conversationComponent.nuevaConversacion();
+      this.conversationComponent.limpiarChat();
     }
   }
 }

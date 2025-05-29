@@ -31,98 +31,54 @@ export class HelpTabComponent {
   ayudas: HelpArticle[] = [
     { 
       id: 1, 
-      title: 'Acerca de BFG Token', 
-      content: 'Información detallada sobre BFG Token, su utilidad y características principales.'
+      title: '¿Cómo cambiar mi contraseña?', 
+      content: 'Ve a tu perfil desde el menú superior y selecciona la pestaña “Cambiar contraseña”. Ingresa tu contraseña actual, la nueva y confirma el cambio haciendo clic en “Cambiar contraseña”.'
     },
     { 
       id: 2, 
-      title: 'Depositar y Retirar en BetFury', 
-      content: 'Guía paso a paso sobre cómo depositar y retirar fondos en la plataforma BetFury.'
+      title: '¿Cómo restablecer la contraseña si la olvidé?', 
+      content: 'En la pantalla de inicio de sesión, haz clic en “¿Ha olvidado su contraseña?” y sigue las instrucciones para ingresar tu correo y generar una nueva.'
     },
     { 
       id: 3, 
-      title: '¿Cómo registrarse y proteger su cuenta?', 
-      content: 'Instrucciones detalladas para crear una cuenta segura y protegerla adecuadamente.'
+      title: '¿Cómo actualizar mis datos personales?', 
+      content: 'Desde tu perfil, en la pestaña “Datos personales”, puedes editar tu nombre, correo y otros campos. Recuerda guardar los cambios con el botón “Actualizar usuario”.'
     },
     { 
       id: 4, 
-      title: 'Preguntas Frecuentes',
+      title: '❓Preguntas Frecuentes (FAQ)',
       content: '', 
       Mcontent: [
         {
-          title: '¿Qué es BFG Token?',
-          content: 'BFG Token es una criptomoneda que se puede adquirir en la plataforma BetFury.'
+          title: '¿Qué hago si no puedo iniciar sesión?',
+          content: 'Asegúrate de que estás usando el usuario y contraseña correctos. Si el problema persiste, utiliza la opción de “Recuperar contraseña”.'
         },
         {
-          title: '¿Cómo puedo adquirir BFG Token?',
-          content: 'Puedes adquirir BFG Token en la plataforma BetFury a través del depósito de criptomonedas.'
+          title: '¿Puedo eliminar registros por error?',
+          content: 'Sí, pero el sistema solicita confirmación antes de eliminar. Siempre verifica dos veces antes de aceptar.'
         },
         {
-          title: '¿Cómo puedo retirar BFG Token?',
-          content: 'Puedes retirar BFG Token de la plataforma BetFury a través del retiro de criptomonedas.'
+          title: '¿Puedo ver un resumen de mis actividades?',
+          content: 'Sí, muchas secciones tienen opciones como “Mostrar”, “Filtros” y “Acciones” que te permiten revisar registros anteriores.'
         },
         {
-          title: '¿Cómo puedo convertir BFG Token en criptomonedas?',
-          content: 'Puedes convertir BFG Token en criptomonedas a través del depósito de criptomonedas.'
+          title: '¿Qué significan los campos en rojo al llenar formularios?',
+          content: 'Indican que hubo un error de validación. Corrige el dato señalado y vuelve a intentar.'
         },
-        {
-          title: '¿Cómo puedo convertir BFG Token en criptomonedas?',
-          content: 'Puedes convertir BFG Token en criptomonedas a través del depósito de criptomonedas.'
-        },
-        {
-          title: '¿Cómo puedo convertir BFG Token en criptomonedas?',
-          content: 'Puedes convertir BFG Token en criptomonedas a través del depósito de criptomonedas.'
-        }
       ] ,     
     },
     { 
       id: 5, 
-      title: 'JUEGO Y APUESTAS RESPONSABLES', 
-      content: 'Guía sobre prácticas de juego responsable y herramientas disponibles para controlar tu actividad de juego.'
+      title: '¿Cómo bloquear mi sesión temporalmente?', 
+      content: 'Haz clic en tu nombre de usuario y selecciona “Bloquear”. Esto protege tu cuenta si necesitas alejarte del equipo sin cerrar sesión.'
     },
-    { 
-      id: 6, 
-      title: 'Autenticación de dos factores (2FA)', 
-      content: 'Instrucciones para configurar y usar la autenticación de dos factores para mayor seguridad.'
-    },
-    { 
-      id: 7, 
-      title: '¿Cómo funcionan la caché y las cookies?', 
-      content: 'Explicación sobre el uso de caché y cookies en la plataforma y cómo afectan tu experiencia.'
-    },
-    { 
-      id: 8, 
-      title: 'Juegos BetFury', 
-      content: 'Catálogo y descripción de los juegos disponibles en la plataforma BetFury.'
-    },
-    { 
-      id: 9, 
-      title: 'Club VIP', 
-      content: 'Detalles sobre el programa VIP, sus beneficios y cómo subir de nivel.'
-    },
-    { 
-      id: 10, 
-      title: 'Sistema de rangos', 
-      content: 'Explicación del sistema de rangos y recompensas por progresión en la plataforma.'
-    },
-    { 
-      id: 11, 
-      title: '¿Falta el depósito?', 
-      content: 'Solución de problemas comunes relacionados con depósitos faltantes o retrasados.'
-    }
   ];
 
   ngOnInit(): void {
-    // Si no se proporcionan artículos de ayuda, usar el array predeterminado
-    if (this.ayudas.length === 0) {
-      this.ayudas = this.ayudas;
-    }
-    // Inicializar los artículos filtrados con todos los artículos disponibles
     this.filteredHelpItems = [...this.ayudas];
   }
 
   ngOnChanges(): void {
-    // Actualizar los artículos filtrados cuando cambien los artículos de entrada
     this.filteredHelpItems = [...this.ayudas];
   }
 
@@ -135,19 +91,33 @@ export class HelpTabComponent {
   }
 
   searchHelp(): void {
-    if (this.searchQuery.trim() === '') {
+    const query = this.searchQuery?.toLowerCase().trim() || '';
+    
+    if (!query) {
       // Si la búsqueda está vacía, mostrar todos los artículos
       this.filteredHelpItems = [...this.ayudas];
-    } else {
-      // Filtrar artículos que coincidan con la consulta de búsqueda
-      const query = this.searchQuery.toLowerCase().trim();
-      this.filteredHelpItems = this.ayudas.filter(item => 
-        item.title.toLowerCase().includes(query) || 
-        item.content.toLowerCase().includes(query)
-      );
+      return;
     }
-    // Cerrar el artículo seleccionado si hay uno abierto
-    this.selectedHelpArticle = null;
+
+    // Filtrar artículos que coincidan con la consulta de búsqueda
+    this.filteredHelpItems = this.ayudas.filter(item => {
+      // Buscar en el título y contenido principal
+      const mainMatch = item.title.toLowerCase().includes(query) || 
+                      item.content.toLowerCase().includes(query);
+      
+      // Si tiene Mcontent, buscar también en los títulos y contenidos de los subitems
+      const hasMatchingMcontent = item.Mcontent?.some(subItem => 
+        subItem.title.toLowerCase().includes(query) || 
+        subItem.content.toLowerCase().includes(query)
+      );
+
+      return mainMatch || hasMatchingMcontent;
+    });
+
+    // Si hay un artículo abierto que ya no está en los resultados, cerrarlo
+    if (this.selectedHelpArticle && !this.filteredHelpItems.includes(this.selectedHelpArticle)) {
+      this.selectedHelpArticle = null;
+    }
   }
 
   // Ya no necesitamos toggleHelp ya que ahora navegamos a la vista detallada
